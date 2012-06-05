@@ -2,22 +2,33 @@ package test
 
 import minthe._
 import helpers._
+import minthe.messages.{PlayNote, Bang}
+import units._
 
 object Run {
    def main(args: Array[String]) {
+
+      val ds:List[Double] = List(-256, -255, -128, -127, 0, 127, 128, 255, 256)
+
       val synth = new Synth
 
-      val osc = Sine(440) + (Sine(1, 10) ^ Sine(880)) + Sine(1200)
-
-//      val osc = (
-//         Sine(midi2hz(60)) + Sine(midi2hz(64)) + Sine(midi2hz(67)) + Sine(midi2hz(71)) + Sine(midi2hz(74)) + Sine(midi2hz(78))
-//      ) ^ Sine(440, 0.5)
+      val osc = {
+         val adsr = ADSR(5, 5, 0, 0)
+         val adsr2 = (  adsr )
+         ( Sine(440) | adsr ) +
+         ( Sine(440) | adsr2)
+      }
 
       synth.add(Output(osc))
 
       synth.start()
+      Thread.sleep(1000)
 
-      Thread.sleep(10000)
+      osc !! Bang
+      for(i <- 1 to 10) {
+//         dc.set(0 + i/10.0)
+         Thread.sleep(1000)
+      }
 
       synth.stop()
    }
