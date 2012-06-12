@@ -1,7 +1,7 @@
 package test
 
 import minthe._
-import minthe.messages.{SetFreq, PlayNote, Bang}
+import minthe.messages._
 import notes.PitchName.C
 import units._
 
