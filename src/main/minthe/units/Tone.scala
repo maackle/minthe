@@ -1,11 +1,8 @@
 package minthe.units
 
 import minthe.units.Signal._
-import minthe.Synth._
 import minthe.messages._
 import sound.common._
-import test.Settings
-import Settings._
 
 
 trait Tone extends Signal {

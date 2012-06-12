@@ -2,7 +2,6 @@ package minthe
 
 import minthe.Synth._
 import units._
-import Signal._
 import sound.common._
 
 

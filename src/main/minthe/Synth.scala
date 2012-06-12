@@ -1,15 +1,12 @@
 package minthe
 
 import javax.sound.sampled.{AudioFormat, AudioSystem}
-import scala.actors.Actor._
 import actors.Actor
-import collection.SeqView
 import java.io.PrintWriter
-import java.nio.ByteBuffer
-import collection.mutable.{Buffer, ListBuffer, IndexedSeqView}
+import collection.mutable.ListBuffer
 import units._
 import sound.ChunkConverter
-import test.{Settings, Timer}
+import test.Settings
 import sound.common._
 import Settings._
 

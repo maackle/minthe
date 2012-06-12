@@ -5,7 +5,7 @@ import java.io.PrintWriter
 import minthe.messages.Message
 
 import test.Settings
-import minthe.{Synth}
+import minthe.Synth
 import sound.common._
 import Settings._
 

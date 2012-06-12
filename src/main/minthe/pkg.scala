@@ -1,6 +1,5 @@
 package minthe
 
-import notes.common._
 
 package object util {
 
