@@ -2,27 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b9fe8cc-e8d3-4378-9705-8da6600a9577" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/notes/Intervals.scala" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/maackle/notes/Intervals.scala" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wave.txt" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/minthe/Synth.scala" afterPath="$PROJECT_DIR$/src/main/minthe/Synth.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/minthe/pkg.scala" afterPath="$PROJECT_DIR$/src/main/minthe/pkg.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/minthe/take1/Base.scala" afterPath="$PROJECT_DIR$/src/main/minthe/take1/Base.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/minthe/take1/Oscillator.scala" afterPath="$PROJECT_DIR$/src/main/minthe/take1/Oscillator.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/minthe/take1/Synth.scala" afterPath="$PROJECT_DIR$/src/main/minthe/take1/Synth.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/minthe/take1/Voice.scala" afterPath="$PROJECT_DIR$/src/main/minthe/take1/Voice.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/minthe/units/Components.scala" afterPath="$PROJECT_DIR$/src/main/minthe/units/Components.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/minthe/units/Filter.scala" afterPath="$PROJECT_DIR$/src/main/minthe/units/Filter.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/minthe/units/Signal.scala" afterPath="$PROJECT_DIR$/src/main/minthe/units/Signal.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/minthe/units/Tone.scala" afterPath="$PROJECT_DIR$/src/main/minthe/units/Tone.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/notes/Notes.scala" afterPath="$PROJECT_DIR$/src/main/notes/Notes.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/notes/Pitch.scala" afterPath="$PROJECT_DIR$/src/main/notes/Pitch.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/notes/PitchName.scala" afterPath="$PROJECT_DIR$/src/main/notes/PitchName.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/notes/common.scala" afterPath="$PROJECT_DIR$/src/main/notes/common.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/sound/ChunkConverter.scala" afterPath="$PROJECT_DIR$/src/main/sound/ChunkConverter.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/sound/Recorder.scala" afterPath="$PROJECT_DIR$/src/main/sound/Recorder.scala" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/maackle/sound/common.scala" afterPath="$PROJECT_DIR$/src/main/sound/common.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -139,7 +118,7 @@
       <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="20" selection-end="20" vertical-scroll-proportion="0.0952381">
+            <state line="0" column="9" selection-start="9" selection-end="9" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -203,7 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minthe/units/Tone.scala" />
         <option value="$PROJECT_DIR$/src/sound/common.scala" />
         <option value="$PROJECT_DIR$/src/test/Settings.scala" />
         <option value="$PROJECT_DIR$/src/minthe/units/Signal.scala" />
@@ -219,6 +197,7 @@
         <option value="$PROJECT_DIR$/src/test/Run.scala" />
         <option value="$PROJECT_DIR$/src/maackle/minthe/pkg.scala" />
         <option value="$PROJECT_DIR$/src/main/minthe/Synth.scala" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -550,7 +529,11 @@
       <created>1339529111131</created>
       <updated>1339529111131</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="general update">
+      <created>1339530372166</created>
+      <updated>1339530372166</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -575,7 +558,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -593,7 +576,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24918832" sideWeight="0.6334661" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.6706507" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24856322" sideWeight="0.6706507" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24856322" sideWeight="0.6706507" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43160692" sideWeight="0.49025974" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -761,7 +744,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="20" selection-end="20" vertical-scroll-proportion="0.0952381">
+        <state line="0" column="9" selection-start="9" selection-end="9" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
