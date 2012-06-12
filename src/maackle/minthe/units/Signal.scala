@@ -2,9 +2,12 @@ package minthe.units
 
 import minthe.Synth._
 import java.io.PrintWriter
-import minthe.Synth
 import minthe.messages.Message
 
+import test.Settings
+import minthe.{Synth}
+import sound.common._
+import Settings._
 
 trait ChunkBuffer {
    val buf:Array[S] = Array.ofDim(chunkSize)
@@ -59,11 +62,6 @@ object Signal {
 }
 
 
-
-
-
-
-
 import Signal._
 
 abstract class Signal extends Listener {
@@ -79,11 +77,11 @@ abstract class Signal extends Listener {
       this
    }
    def |(that:Filter) = new FilteredSignal(this, that)
+   @deprecated("use filter operator")
+   def *(that:Filter) = new Composite(this, that)(_*_)
 
    def +(that:Signal) = new Composite(this, that)(_+_)
    def -(that:Signal) = new Composite(this, that)(_-_)
-   @deprecated("use filter operator")
-   def *(that:Filter) = new Composite(this, that)(_*_)
    def *(that:Signal) = new Composite(this, that)(_*_)
    def ~(that:Tone) = this.modulate(that)
 }
@@ -123,19 +121,4 @@ trait Listener extends HasDependents {
 
 trait Leaf {
    val dependents = Nil
-}
-
-
-case class DC(var level:S) extends Filter with Leaf {
-
-   private var _chunk:Chunk = _
-
-   set(level)
-
-   def set(lv:S) {
-      level = lv
-      _chunk = Array.fill(chunkSize)(level)
-      println(level)
-   }
-   def chunk = _chunk
 }

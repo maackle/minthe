@@ -3,7 +3,9 @@ package minthe.units
 import minthe.units.Signal._
 import minthe.Synth._
 import minthe.messages._
-import minthe.helpers._
+import sound.common._
+import test.Settings
+import Settings._
 
 
 trait Tone extends Signal {
@@ -42,7 +44,7 @@ case class PMSignal(val original:Tone, val modulator:Signal) extends Tone {
 
 case class Pulse(var freq:Double, var width:Double) extends Tone {
    private def radwidth = width*Pi2
-   def fn = (x) => { if((x%Pi2) < (radwidth)) 1.0 else -1.0 }
+   def fn = (x:S) => { if((x%Pi2) < (radwidth)) 1.0 else -1.0 }
    override def toString = "Pulse(%s, %s)".format(freq, width)
 }
 
@@ -53,12 +55,12 @@ case class Sine(var freq: Double) extends Tone {
 
 case class Saw(var freq:Double) extends Tone {
    import math.Pi
-   def fn = t => (Pi - (t%(2*Pi))) / Pi
+   def fn = (t:S) => (Pi - (t%(2*Pi))) / Pi
    override def toString = "Saw(%s)".format(freq)
 }
 case class Triangle(var freq:Double) extends Tone {
    import math.Pi
-   def fn = t => {
+   def fn = (t:S) => {
       val a = (t)%(2*Pi)
       if(a < Pi) (2*a - Pi) / Pi
       else (3*Pi - 2*a) / Pi

@@ -1,0 +1,5 @@
+package notes
+
+class Notes {
+
+}

@@ -8,18 +8,14 @@ import java.io.PrintWriter
 import java.nio.ByteBuffer
 import collection.mutable.{Buffer, ListBuffer, IndexedSeqView}
 import units._
+import sound.ChunkConverter
+import test.{Settings, Timer}
+import sound.common._
+import Settings._
 
 object Synth {
-   type S = Double
-   type Chunk = Array[S]
 
-   val sampleRate = 44100
-   val chunkSize = math.pow(2,12).toInt
-   val byteDepth = 2
-   val fmtSigned = true
-   val fmtBigEndian = false
-   val ZeroChunk:Chunk = Array.ofDim(chunkSize)
-   val bitDepth = byteDepth * 8
+   val ZeroChunk: Chunk = Array.fill(chunkSize)(0.0)
 
    val logg = ListBuffer[String]()
    val samplog = ListBuffer[Byte]()
@@ -29,6 +25,8 @@ object Synth {
 
    case object Clock {
       tick()
+      private var _ticks = 0
+      def ticks = _ticks
       private var t = 0
       private var ts, rads, secs = ZeroChunk
       def tick() {
@@ -38,6 +36,7 @@ object Synth {
             (t * 2 * math.Pi / sampleRate) // don't do mod here!
          }
          t += chunkSize
+         _ticks += 1
       }
       def counts  = ts
       def radians = rads
@@ -50,18 +49,21 @@ object Synth {
 
 }
 
-class Synth {
+class Synth(gain:Double) {
    import Synth._
 
    def log(a:Any) = println(a)
 
-   private var voices = List[Output]()
-   val mix = new Mixer
+   private var voices = List[Voice]()
+   val mix = new Mixer(gain)
 
-   var sharedByteBuf:Array[Byte] = Array.fill(chunkSize * byteDepth)(0.toByte)
    val chunkRange = Array.range(0, chunkSize)
 
-   def add(v:Output) {
+   def add(s:Signal) {
+      add(Voice(s))
+   }
+
+   def add(v:Voice) {
       voices = v :: voices
       v ->: mix
       log("added %s".format(v.toString))
@@ -72,7 +74,7 @@ class Synth {
 
    object A extends Actor {
 
-      val af = new AudioFormat(sampleRate, bitDepth, 1, fmtSigned, fmtBigEndian)
+      val af = new AudioFormat(sampleRate, bitDepth, 1, fmtSigned_?, fmtBigEndian_?)
       val sdl = AudioSystem.getSourceDataLine(af)
       log(af)
 
@@ -100,9 +102,9 @@ class Synth {
                   sdl.close()
                   running = false
                   exit()
-               case ByteLoad if(running) =>
+               case ByteLoad(bytes) if(running) =>
                   Computer ! Compute(this)
-                  put(sharedByteBuf)
+                  put(bytes)
                case msg =>
                   throw new Exception("unknown message: " + msg)
             }
@@ -113,48 +115,21 @@ class Synth {
    object Computer extends Actor {
 
       val ampMax = math.pow(2,bitDepth)/2-1
-      @inline def bitify8(s:S) = {
-         Seq(
-            if(fmtSigned)  (s * ampMax).toByte
-            else ((s+1) * ampMax).toByte
-         )
-      }
-      @inline def bitify16(s:S) = {
-         val ss = {
-            (s * ampMax).toInt
-         }
-         Seq(ss.toByte, (ss>>8).toByte)
-      }
-      @inline val bitify = {
-         if(bitDepth==8) bitify8 _
-         else if(bitDepth==16) bitify16 _
-         else throw new Exception("unsupported bit depth")
-      }
 
-      @inline def chunk2bytes(chunk:Chunk) {
-         if(byteDepth==1) { // 8 bit
-            throw new Exception("not implemented")
-         }
-         else if(byteDepth == 2) { // 16 bit
-            for(i <- chunkRange) {
-               val ss = (chunk(i) * ampMax).toInt
-               sharedByteBuf(i<<1) = ss.toByte
-               sharedByteBuf((i<<1)+1) = (ss>>8).toByte
-            }
-         }
-         else throw new Exception("unsupported bit depth")
-      }
+      val numBufs = 2
+      var bufs:Array[Array[Byte]] = Array.fill(numBufs)(Array.fill(chunkSize * byteDepth)(0.toByte) )
+
+      val cc = new ChunkConverter(bitDepth)
 
       def act {
-         while(true) {
-            receive {
+         loop {
+            react {
                case Compute(actor) =>
-                  sharedByteBuf = mix.chunk flatMap bitify
+                  val buf = bufs(Clock.ticks % numBufs)
+                  val bb = cc.toBytes(mix.chunk)
+                  bb.get(buf)
                   Clock.tick()
-//                  chunk2bytes(mix.chunk)
-//                  bytes map (samplog += _)
-//                  Signal.Trace.capture()
-                  actor ! ByteLoad
+                  actor ! ByteLoad(buf)
                case 'stop =>
                   exit()
             }

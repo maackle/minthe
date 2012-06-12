@@ -1,6 +1,6 @@
 package minthe
 
-import minthe.helpers._
+import notes.common._
 
 package object util {
 
@@ -11,7 +11,9 @@ package object util {
       fa + (imp.toFloat(b)-fa) * u
    }
 }
-object messages {
+
+package object messages {
+   import notes.common._
 
    trait Message {
       val also:List[Message] = Nil
@@ -24,25 +26,4 @@ object messages {
    case class PlayNote(midinum:Double) extends Message {
       override val also = SetFreq(midi2hz(midinum)) :: Bang :: Nil
    }
-}
-package object helpers {
-
-   def midi2hz(n: Double): Double = (440f * math.pow((math.pow(2, 1 / 12f)), n - 49 - 12))
-
-}
-
-package object intervals {
-
-   val i2 = 2
-   val min3 = 3
-   val maj3 = 4
-   val i4 = 5
-   val i5 = 7
-   val i6 = 9
-   val min7 = 10
-   val maj7 = 11
-   val octave = 12
-   val i9 = octave + i2
-   val i11 = octave + i4
-   val i13 = octave + i6
 }
